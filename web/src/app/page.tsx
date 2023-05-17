@@ -1,7 +1,7 @@
 export default function Home() {
   return (
-    <div className="w-20 bg-red-500 text-2xl font-bold uppercase">
-      Hello World
+    <div className="h-screen bg-zinc-900 p-6 text-zinc-50">
+      <h1 className="text-4xl font-bold ">Hello World</h1>
     </div>
   )
 }
