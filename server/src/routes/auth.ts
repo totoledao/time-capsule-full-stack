@@ -40,9 +40,9 @@ export async function authRoutes(app: FastifyInstance) {
       name: z.string(),
       avatar_url: z.string().url(),
     });
-
     const userData = userSchema.parse(userResponse.data);
 
+    // Check if user already exists, otherwise create user
     let user = await prisma.user.findUnique({
       where: { githubId: userData.id },
     });
@@ -58,6 +58,20 @@ export async function authRoutes(app: FastifyInstance) {
       });
     }
 
-    return user;
+    // Generate JWT
+    const token = app.jwt.sign(
+      // public user data
+      {
+        name: user.name,
+        avatarUrl: user.avatarUrl,
+      },
+      // token config
+      {
+        sub: user.id,
+        expiresIn: "30 days",
+      }
+    );
+
+    return token;
   });
 }
