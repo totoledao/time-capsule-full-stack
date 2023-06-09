@@ -8,7 +8,7 @@ export default function App() {
   const { login } = useContext(AuthContext)
 
   return (
-    <View className="flex-1 justify-center px-8 py-10">
+    <View className="flex-1 justify-center px-8 pb-10">
       <View className="flex-1 items-center justify-center gap-6">
         <LogoLine />
 

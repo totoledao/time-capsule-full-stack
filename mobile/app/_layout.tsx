@@ -8,6 +8,7 @@ import {
   Roboto_700Bold,
   useFonts,
 } from '@expo-google-fonts/roboto'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 import AuthProvider from '../context/auth'
 
@@ -21,6 +22,7 @@ export default function Layout() {
     Roboto_700Bold,
     BaiJamjuree_700Bold,
   })
+  const { bottom, top } = useSafeAreaInsets()
 
   if (!fontsLoaded) {
     return <SplashScreen />
@@ -31,6 +33,7 @@ export default function Layout() {
       source={blurBg}
       className="relative flex-1 bg-gray-900"
       imageStyle={{ position: 'absolute', left: '-100%' }}
+      style={{ paddingBottom: bottom, paddingTop: top + 16 }}
     >
       <StatusBar style="light" translucent />
       <Stripes />
