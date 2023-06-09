@@ -1,7 +1,5 @@
-import { SplashScreen, Stack } from 'expo-router'
-import * as SecureStore from 'expo-secure-store'
+import { SplashScreen } from 'expo-router'
 import { StatusBar } from 'expo-status-bar'
-import { useEffect, useState } from 'react'
 import { ImageBackground } from 'react-native'
 
 import { BaiJamjuree_700Bold } from '@expo-google-fonts/bai-jamjuree'
@@ -13,19 +11,11 @@ import {
 
 import AuthProvider from '../context/auth'
 
+import { Routes } from '../routes'
 import blurBg from '../src/assets/bg-blur.png'
 import Stripes from '../src/assets/stripes'
 
 export default function Layout() {
-  const [token, setToken] = useState<string | null>(null)
-
-  useEffect(() => {
-    ;(async () => {
-      const token = await SecureStore.getItemAsync('token')
-      setToken(token)
-    })()
-  }, [])
-
   const [fontsLoaded] = useFonts({
     Roboto_400Regular,
     Roboto_700Bold,
@@ -45,16 +35,7 @@ export default function Layout() {
       <StatusBar style="light" translucent />
       <Stripes />
       <AuthProvider>
-        <Stack
-          screenOptions={{
-            headerShown: false,
-            contentStyle: { backgroundColor: 'transparent' },
-          }}
-        >
-          <Stack.Screen name="index" redirect={!!token} />
-          <Stack.Screen name="memories" />
-          <Stack.Screen name="new" />
-        </Stack>
+        <Routes />
       </AuthProvider>
     </ImageBackground>
   )
