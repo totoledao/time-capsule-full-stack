@@ -1,6 +1,8 @@
 import { Camera, ChevronLeft } from 'lucide-react'
 import Link from 'next/link'
 
+import { MediaPicker } from '@/components/MediaPicker'
+
 export default function NewMemorie() {
   return (
     <div className="flex flex-1 flex-col gap-4">
@@ -20,7 +22,6 @@ export default function NewMemorie() {
           >
             <Camera className="r-4 w-4" />
             Anexar mídia
-            <input type="file" id="media" className="invisible h-0 w-0" />
           </label>
 
           <label
@@ -37,6 +38,7 @@ export default function NewMemorie() {
             Tornar memória pública
           </label>
         </div>
+        <MediaPicker />
 
         <textarea
           name="content"
