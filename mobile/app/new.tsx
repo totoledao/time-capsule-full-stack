@@ -1,8 +1,8 @@
 import Icon from '@expo/vector-icons/Feather'
 import { ResizeMode, Video } from 'expo-av'
 import * as ImagePicker from 'expo-image-picker'
-import { Link } from 'expo-router'
-import React, { useState } from 'react'
+import { Link, useRouter } from 'expo-router'
+import React, { useContext, useState } from 'react'
 import {
   Image,
   Pressable,
@@ -14,6 +14,9 @@ import {
   View,
 } from 'react-native'
 
+import { AuthContext } from '../context/auth'
+
+import { api } from '../src/assets/lib/api'
 import LogoLine from '../src/assets/logoLine'
 
 const MediaPreview = ({ media }) => {
@@ -23,7 +26,7 @@ const MediaPreview = ({ media }) => {
   if (media?.type === 'image') {
     return (
       <Image
-        className="h-32 w-full items-center justify-center rounded-lg border border-dashed border-gray-500 bg-black/20"
+        className="h-32 w-full items-center justify-center"
         alt={media.uri}
         source={{
           uri: media.uri,
@@ -72,9 +75,12 @@ const MediaPreview = ({ media }) => {
 }
 
 export default function New() {
+  const router = useRouter()
+  const { token } = useContext(AuthContext)
   const [isPublic, setIsPublic] = useState(false)
   const [content, setContent] = useState('')
   const [media, setMedia] = useState<ImagePicker.ImagePickerAsset | null>(null)
+  const [error, setError] = useState<string | null>(null)
 
   const openMediaPicker = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
@@ -87,8 +93,62 @@ export default function New() {
     }
   }
 
-  const handleCreateMemory = () => {
-    console.log(isPublic, content, media)
+  const handleCreateMemory = async () => {
+    if (media === null && content === '') {
+      setError('Escolha uma foto/video ou digite algo para salvar')
+      setTimeout(() => {
+        setError(null)
+      }, 3000)
+      return
+    }
+
+    try {
+      let coverUrl = ''
+
+      if (media) {
+        const uploadFormData = new FormData()
+
+        uploadFormData.append('file', {
+          uri: media.uri,
+          name: media.type === 'image' ? 'image.jpg' : 'video.mp4',
+          type: media.type === 'image' ? 'image/jpeg' : 'video/mp4',
+        } as any)
+
+        const { data } = await api.post<{
+          success: boolean
+          url?: string
+        }>('/upload', uploadFormData, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'multipart/form-data',
+          },
+        })
+
+        coverUrl = data.url
+      }
+
+      await api.post(
+        '/memories',
+        {
+          content,
+          isPublic,
+          coverUrl,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      )
+
+      router.push('/memories')
+    } catch (err) {
+      console.log(err.response)
+      setError(err?.response?.data?.error)
+      setTimeout(() => {
+        setError(null)
+      }, 3000)
+    }
   }
 
   return (
@@ -123,15 +183,22 @@ export default function New() {
         </View>
 
         <Pressable
-          className="h-32 items-center justify-center rounded-lg border border-dashed border-gray-500 bg-black/20"
+          className="h-32 items-center justify-center overflow-hidden rounded-lg border border-dashed border-gray-500 bg-black/20"
           onPress={openMediaPicker}
         >
           <MediaPreview media={media} />
         </Pressable>
 
+        {error ? (
+          <Text className="m-0 p-0 font-body text-lg text-purple-400">
+            {error}
+          </Text>
+        ) : null}
+
         <TextInput
           multiline
           className="p-0 font-body text-lg text-gray-50"
+          textAlignVertical="top"
           placeholder="Fique livre para adicionar fotos, vídeos e relatos sobre essa experiência que você quer lembrar para sempre."
           placeholderTextColor={'#56565A'}
           value={content}

@@ -16,7 +16,10 @@ export async function memoriesRoutes(app: FastifyInstance) {
     return memories?.map((obj) => ({
       id: obj.id,
       coverUrl: obj.coverUrl,
-      excerpt: obj?.content?.substring(0, 115)?.concat("..."),
+      excerpt:
+        obj?.content?.length > 115
+          ? obj?.content?.substring(0, 115)?.concat("...")
+          : obj?.content,
     }));
   });
 
