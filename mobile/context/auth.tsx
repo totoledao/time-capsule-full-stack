@@ -68,6 +68,7 @@ export default function AuthProvider({ children }) {
   async function logout() {
     await SecureStore.deleteItemAsync('token')
     setToken('')
+    router.push('/')
   }
 
   return (

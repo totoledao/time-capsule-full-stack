@@ -26,11 +26,12 @@ export function Routes() {
       screenOptions={{
         headerShown: false,
         contentStyle: { backgroundColor: 'transparent' },
+        animation: 'fade',
       }}
     >
       <Stack.Screen name="index" redirect={!!token} />
-      <Stack.Screen name="new" />
       <Stack.Screen name="memories" />
+      <Stack.Screen name="new" />
     </Stack>
   )
 }
