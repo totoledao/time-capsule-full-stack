@@ -1,8 +1,8 @@
 import * as React from 'react'
 import Svg, { Defs, LinearGradient, Path, Stop } from 'react-native-svg'
 
-const SvgComponent = () => (
-  <Svg width={210} height={20} fill="none">
+const SvgComponent = ({ width = 210, height = 20 }) => (
+  <Svg width={width} height={height} fill="none" viewBox={`0 0 210 20`}>
     <Path
       fill="url(#a)"
       fillRule="evenodd"

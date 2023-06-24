@@ -18,6 +18,7 @@ import { AuthContext } from '../context/auth'
 
 import { api } from '../src/assets/lib/api'
 import LogoLine from '../src/assets/logoLine'
+import { LoadingBG } from './components/LoadingBG'
 
 const MediaPreview = ({ media }) => {
   const video = React.useRef(null)
@@ -81,15 +82,23 @@ export default function New() {
   const [content, setContent] = useState('')
   const [media, setMedia] = useState<ImagePicker.ImagePickerAsset | null>(null)
   const [error, setError] = useState<string | null>(null)
+  const [loading, setLoading] = useState(false)
 
   const openMediaPicker = async () => {
-    const result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      quality: 1,
-    })
+    setLoading(true)
+    try {
+      const result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.All,
+        quality: 1,
+      })
 
-    if (!result.canceled) {
-      setMedia(result.assets[0])
+      if (!result.canceled) {
+        setMedia(result.assets[0])
+      }
+    } catch (err) {
+      console.log(err)
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -101,7 +110,7 @@ export default function New() {
       }, 3000)
       return
     }
-
+    setLoading(true)
     try {
       let coverUrl = ''
 
@@ -148,6 +157,8 @@ export default function New() {
       setTimeout(() => {
         setError(null)
       }, 3000)
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -215,6 +226,8 @@ export default function New() {
           <Text className="font-alt text-sm uppercase text-black">Salvar</Text>
         </TouchableOpacity>
       </View>
+
+      <LoadingBG loading={loading} />
     </ScrollView>
   )
 }
