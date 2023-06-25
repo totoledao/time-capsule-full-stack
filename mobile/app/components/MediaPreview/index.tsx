@@ -10,7 +10,7 @@ export function MediaPreview({ media }) {
   if (media?.type === 'image') {
     return (
       <Image
-        className="h-32 w-full items-center justify-center"
+        className="h-64 w-full items-center justify-center"
         alt={media.uri}
         source={{
           uri: media.uri,
@@ -35,7 +35,7 @@ export function MediaPreview({ media }) {
           style={{
             alignSelf: 'center',
             width: 800,
-            height: 32 * 4,
+            height: 64 * 4,
           }}
           useNativeControls={false}
           resizeMode={ResizeMode.CONTAIN}

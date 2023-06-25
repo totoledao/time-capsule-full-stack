@@ -106,6 +106,7 @@ export default function Memories() {
 
       <FlatList
         data={memories}
+        keyExtractor={(item) => item.id}
         renderItem={({ item }) => <MemoryCard memory={item} />}
         contentContainerStyle={{ flexGrow: 1 }}
         ItemSeparatorComponent={() => <View className="h-8" />}

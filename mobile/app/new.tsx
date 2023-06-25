@@ -140,7 +140,7 @@ export default function New() {
         </View>
 
         <Pressable
-          className="h-32 items-center justify-center overflow-hidden rounded-lg border border-dashed border-gray-500 bg-black/20"
+          className="items-center justify-center overflow-hidden rounded-lg border border-dashed border-gray-500 bg-black/20"
           onPress={openMediaPicker}
         >
           <MediaPreview media={media} />
