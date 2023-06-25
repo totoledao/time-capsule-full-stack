@@ -27,7 +27,7 @@ const MemoryCard = ({ memory }: { memory: memory }) => {
         </Text>
       </View>
       {memory.coverUrl !== '' ? (
-        <View className="space-y-4 overflow-hidden rounded-lg px-8">
+        <View className="mx-8 space-y-4 overflow-hidden rounded-lg">
           <MediaPreview
             media={{
               type: memory.coverUrl.includes('jpg') ? 'image' : 'video',
