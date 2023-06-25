@@ -110,23 +110,25 @@ export default function Memories() {
         contentContainerStyle={{ flexGrow: 1 }}
         ItemSeparatorComponent={() => <View className="h-8" />}
         ListFooterComponent={() => <View className="h-8" />}
-        ListEmptyComponent={() => (
-          <View className="flex-grow-1 flex-1 justify-center px-8">
-            <Text className="mb-10 font-body text-base leading-relaxed  text-gray-100">
-              Você ainda não possui nenhuma memória registrada.
-            </Text>
-            <Link href={'/new'} asChild>
-              <TouchableOpacity
-                activeOpacity={0.8}
-                className="rounded-full bg-green-500 px-5 py-3"
-              >
-                <Text className="font-alt text-sm uppercase text-black">
-                  Cadastrar lembrança
-                </Text>
-              </TouchableOpacity>
-            </Link>
-          </View>
-        )}
+        ListEmptyComponent={() =>
+          loading ? null : (
+            <View className="flex-grow-1 flex-1 justify-center px-8">
+              <Text className="mb-10 font-body text-base leading-relaxed  text-gray-100">
+                Você ainda não possui nenhuma memória registrada.
+              </Text>
+              <Link href={'/new'} asChild>
+                <TouchableOpacity
+                  activeOpacity={0.8}
+                  className="rounded-full bg-green-500 px-5 py-3"
+                >
+                  <Text className="font-alt text-sm uppercase text-black">
+                    Cadastrar lembrança
+                  </Text>
+                </TouchableOpacity>
+              </Link>
+            </View>
+          )
+        }
       />
 
       <LoadingBG loading={loading} />
