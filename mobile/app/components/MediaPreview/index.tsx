@@ -49,7 +49,7 @@ export function MediaPreview({ media }) {
   }
 
   return (
-    <View className="flex-row items-center gap-2">
+    <View className="h-64 flex-row items-center gap-2">
       <Icon name="image" color="#FFF" />
       <Text className="font-body text-sm text-gray-200">
         Adicionar foto ou video de capa
