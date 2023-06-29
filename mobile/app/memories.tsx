@@ -1,4 +1,6 @@
 import Icon from '@expo/vector-icons/Feather'
+import dayjs from 'dayjs'
+import ptBr from 'dayjs/locale/pt-br'
 import { Link, useFocusEffect } from 'expo-router'
 import React, { useContext, useState } from 'react'
 import { FlatList, Pressable, Text, TouchableOpacity, View } from 'react-native'
@@ -9,6 +11,8 @@ import { api } from '../src/assets/lib/api'
 import LogoLine from '../src/assets/logoLine'
 import { LoadingBG } from './components/LoadingBG'
 import { MediaPreview } from './components/MediaPreview'
+
+dayjs.locale(ptBr)
 
 interface memory {
   coverUrl: string
@@ -23,7 +27,7 @@ const MemoryCard = ({ memory }: { memory: memory }) => {
       <View className="flex-row items-center gap-2">
         <View className="h-px w-5 bg-gray-50" />
         <Text className="font-body text-xs text-gray-100">
-          {memory.createdAt}
+          {dayjs(memory.createdAt).format('DD[ de ]MMMM[, ]YYYY')}
         </Text>
       </View>
       {memory.coverUrl !== '' ? (
