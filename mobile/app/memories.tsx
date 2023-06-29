@@ -85,7 +85,7 @@ export default function Memories() {
 
   return (
     <View className="flex-1">
-      <View className="flex-row items-center justify-between px-8">
+      <View className="flex-row items-center justify-between px-8 pb-6">
         <LogoLine />
 
         <View className="flex-row gap-2">
