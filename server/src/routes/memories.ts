@@ -20,6 +20,7 @@ export async function memoriesRoutes(app: FastifyInstance) {
         obj?.content?.length > 115
           ? obj?.content?.substring(0, 115)?.concat("...")
           : obj?.content,
+      createdAt: obj.createdAt,
     }));
   });
 
