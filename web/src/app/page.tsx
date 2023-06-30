@@ -83,7 +83,14 @@ export default async function Home() {
   if (!isAuthenticated) {
     const { data } = await api.get<memory[]>('/public-memories')
 
-    return <RenderMemories memories={data} isPublic />
+    return (
+      <>
+        <p className="mb-8 text-right text-sm leading-relaxed text-gray-200">
+          Últimas memórias públicas
+        </p>
+        <RenderMemories memories={data} isPublic />
+      </>
+    )
   }
 
   const { data } = await api.get<memory[]>('/memories', {
