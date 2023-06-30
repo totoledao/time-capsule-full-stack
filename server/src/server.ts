@@ -8,6 +8,7 @@ import fastify from "fastify";
 import { resolve } from "path";
 import { authRoutes } from "./routes/auth";
 import { memoriesRoutes } from "./routes/memories";
+import { publicMemoriesRoutes } from "./routes/public-memories";
 import { uploadRoutes } from "./routes/upload";
 
 const app = fastify();
@@ -25,6 +26,7 @@ app.register(jwt, {
 });
 app.register(authRoutes);
 app.register(memoriesRoutes);
+app.register(publicMemoriesRoutes);
 app.register(uploadRoutes);
 
 app

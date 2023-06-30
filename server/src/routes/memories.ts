@@ -35,7 +35,10 @@ export async function memoriesRoutes(app: FastifyInstance) {
     });
 
     if (!memory.isPublic && memory.userId !== request.user.sub) {
-      return response.status(401).send();
+      return response.status(401).send({
+        success: false,
+        error: "The memory you are trying to access is not set to public",
+      });
     }
 
     return memory;
