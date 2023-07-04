@@ -4,8 +4,10 @@ import { createWriteStream, unlinkSync } from "node:fs";
 import { extname, resolve } from "node:path";
 import { pipeline } from "node:stream";
 import { promisify } from "node:util";
+import { networkInterfaces } from "os";
 
 const pump = promisify(pipeline);
+const netInterfaces = networkInterfaces();
 
 export async function uploadRoutes(app: FastifyInstance) {
   app.addHook("preHandler", async (request) => {
@@ -51,7 +53,16 @@ export async function uploadRoutes(app: FastifyInstance) {
         .send({ success: false, error: "File must be smaller than 5MB" });
     }
 
-    const hostUrl = request.protocol.concat("://").concat(request.hostname);
+    let hostUrl = request.protocol.concat("://").concat(request.hostname);
+    if (hostUrl.includes("localhost")) {
+      const [{ address }] = Object.values(netInterfaces).flatMap(
+        (netInterface) =>
+          netInterface.filter(
+            (prop) => prop.family === "IPv4" && !prop.internal
+          )
+      );
+      hostUrl = hostUrl.replace("localhost", address);
+    }
     const fileUrl = new URL(`/uploads/${fileName}`, hostUrl).toString();
 
     return { success: true, url: fileUrl };
