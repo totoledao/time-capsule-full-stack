@@ -3,7 +3,14 @@ import dayjs from 'dayjs'
 import ptBr from 'dayjs/locale/pt-br'
 import { Link, useFocusEffect } from 'expo-router'
 import React, { useContext, useState } from 'react'
-import { FlatList, Pressable, Text, TouchableOpacity, View } from 'react-native'
+import {
+  FlatList,
+  Pressable,
+  RefreshControl,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native'
 
 import { AuthContext } from '../context/auth'
 import { api } from '../src/assets/lib/api'
@@ -133,6 +140,11 @@ export default function Memories() {
               </Link>
             </View>
           )
+        }
+        onEndReached={loadMemories}
+        onEndReachedThreshold={0.2}
+        refreshControl={
+          <RefreshControl refreshing={false} onRefresh={loadMemories} />
         }
       />
 
