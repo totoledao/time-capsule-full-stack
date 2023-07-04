@@ -83,6 +83,8 @@ export default async function Home() {
   if (!isAuthenticated) {
     const { data } = await api.get<memory[]>('/public-memories')
 
+    if (data.length === 0) return <EmptyMemories />
+
     return (
       <>
         <p className="mb-8 text-right text-sm leading-relaxed text-gray-200">
