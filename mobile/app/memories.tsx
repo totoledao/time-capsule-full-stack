@@ -52,7 +52,13 @@ const MemoryCard = ({ memory }: { memory: memory }) => {
           {memory.excerpt}
         </Text>
       ) : null}
-      <Link href={`/memories/id`} asChild>
+      <Link
+        href={{
+          pathname: '/memory',
+          params: { id: memory.id },
+        }}
+        asChild
+      >
         <Pressable className="flex-row items-center gap-2 px-8">
           <Text className="font-body text-sm text-gray-200">Ler mais</Text>
           <Icon name="arrow-right" size={16} color={'#9e9ea0'} />

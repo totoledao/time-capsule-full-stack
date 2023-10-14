@@ -31,6 +31,7 @@ export function Routes() {
     >
       <Stack.Screen name="index" redirect={!!token} />
       <Stack.Screen name="memories" />
+      <Stack.Screen name="memory" />
       <Stack.Screen name="new" />
     </Stack>
   )

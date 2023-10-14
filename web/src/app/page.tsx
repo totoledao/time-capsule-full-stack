@@ -3,6 +3,7 @@ import ptBr from 'dayjs/locale/pt-br'
 import { cookies } from 'next/headers'
 
 import { EmptyMemories } from '@/components/EmptyMemories'
+import { FilePreview } from '@/components/FilePreview'
 import { api } from '@/lib/api'
 import { ArrowRight } from 'lucide-react'
 import Link from 'next/link'
@@ -14,31 +15,6 @@ interface memory {
   excerpt: string
   id: string
   createdAt: string
-}
-
-const FilePreview = ({ mediaURL }: { mediaURL: string }) => {
-  if (mediaURL === '') return null
-
-  const isImage = mediaURL.includes('jpg')
-
-  if (isImage) {
-    return (
-      // eslint-disable-next-line
-      <img
-        src={mediaURL}
-        alt=""
-        className="aspect-auto w-fit rounded-lg object-cover"
-      />
-    )
-  }
-
-  return (
-    <video
-      src={mediaURL}
-      controls
-      className="aspect-auto w-fit rounded-lg object-cover"
-    />
-  )
 }
 
 const RenderMemories = ({
