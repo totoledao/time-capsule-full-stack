@@ -103,11 +103,42 @@ To get a local copy up and running follow these simple steps.
    ```sh
    cd mobile; npm i
    ```
-3. Start the development server
+3. Get the .env variables
+
+   Create two apps and get the .env variables for login from [GitHub > OAuth Apps](https://github.com/settings/developers)<br>
+   The callback URL for the web app will be `http://localhost:3000/api/auth/callback`
+   <br>
+   The callback URL for the mobile app will be `http://localhost:19000`
+   <br>
+   **Note:** localhost does not work on android, so use your IP address for the mobile callback URL
+
+   ### Server
+
+   - Rename **.env.example** to **.env**
+   - Fill in the keys from GitHub
+     ```
+     # WEB
+     GITHUB_CLIENT_ID=""
+     GITHUB_CLIENT_SECRET=""
+     # MOBILE
+     GITHUB_MOBILE_CLIENT_ID=""
+     GITHUB_MOBILE_CLIENT_SECRET=""
+     ```
+
+   ### Web
+
+   - Rename **.env.local.example** to **.env.local**
+   - Fill in the Client ID key from GitHub
+     ```
+     # WEB
+     NEXT_PUBLIC_GITHUB_CLIENT_ID=
+     ```
+
+4. Start the development server
    ```sh
    cd server; npm run dev
    ```
-4. Start the front-end
+5. Start the front-end
    ```sh
    cd web; npm run dev
    ```
