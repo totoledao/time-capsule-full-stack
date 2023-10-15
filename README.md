@@ -134,11 +134,15 @@ To get a local copy up and running follow these simple steps.
      NEXT_PUBLIC_GITHUB_CLIENT_ID=
      ```
 
-4. Start the development server
+4. Start Prisma database
+   ```sh
+   cd server; npx prisma migrate dev --name init
+   ```
+5. Start the development server
    ```sh
    cd server; npm run dev
    ```
-5. Start the front-end
+6. Start the front-end
    ```sh
    cd web; npm run dev
    ```
