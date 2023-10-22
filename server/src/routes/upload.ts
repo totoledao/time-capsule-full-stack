@@ -56,10 +56,17 @@ export async function uploadRoutes(app: FastifyInstance) {
     let hostUrl = request.protocol.concat("://").concat(request.hostname);
     if (hostUrl.includes("localhost")) {
       const [{ address }] = Object.values(netInterfaces).flatMap(
-        (netInterface) =>
-          netInterface.filter(
-            (prop) => prop.family === "IPv4" && !prop.internal
-          )
+        (netInterface) => {
+          if (netInterface) {
+            return netInterface.filter(
+              (prop) => prop.family === "IPv4" && !prop.internal
+            );
+          } else {
+            return {
+              address: "localhost",
+            };
+          }
+        }
       );
       hostUrl = hostUrl.replace("localhost", address);
     }
