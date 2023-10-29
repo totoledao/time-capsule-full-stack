@@ -1,6 +1,7 @@
 # API Documentation
 
-This documentation provides information about the available API endpoints.
+This documentation provides information about the available API endpoints.<br>
+[Download the Insomnia.json](https://github.com/totoledao/time-capsule-full-stack/files/13198555/Insomnia_2023-10-28.json)
 
 <!-- TABLE OF CONTENTS -->
 <details open="open">
