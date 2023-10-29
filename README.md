@@ -64,7 +64,7 @@
 **Archive your memories in the form of text, image or video! Your memories can be designated as either private or public, allowing for controlled sharing.**
 
 The goal in developing this app was to have a practical project to help learn key concepts of back-end and Node.js while keeping myself updated working with the new folder based routing of Next.JS 13 and the new \_layout structure of Expo 48.
-<br>App created based on Next Level Week Spacetime by [Rocketseat](https://rocketseat.com.br/) and further improved (max upload size validation on back-end, localhost filepath parsing for mobile, mobile registration route, show memory, share memory, bug fixing, etc.).
+<br>App created based on Next Level Week Spacetime by [Rocketseat](https://rocketseat.com.br/) and further improved (max upload size validation on back-end, localhost filepath parsing for mobile, mobile registration route, create memory with just text/image or both, show memory, share memory, bug fixing, etc.).
 
 ### Built With
 
