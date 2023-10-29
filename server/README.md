@@ -52,7 +52,7 @@ This documentation provides information about the available API endpoints.
 GET /public-memories
 
 Headers:
-  Content-Type: application/json
+  "Content-Type": "application/json"
 
 Response:
   [
@@ -76,7 +76,7 @@ Response:
 GET /public-memories/790d135b-d4db-4fc8-9587-792d3502c5dc
 
 Headers:
-  Content-Type: application/json
+  "Content-Type": "application/json"
 
 Response:
   {
@@ -102,7 +102,7 @@ Response:
 POST /register
 
 Headers:
-  Content-Type: application/json
+  "Content-Type": "application/json"
 
 Body:
   {
@@ -127,7 +127,7 @@ Response:
 POST /register-mobile
 
 Headers:
-  Content-Type: application/json
+  "Content-Type": "application/json"
 
 Body:
   {
@@ -153,8 +153,8 @@ Response:
 GET /memories
 
 Headers:
-  Content-Type: application/json
-  Authorization: Bearer [Your Access Token]
+  "Content-Type": "application/json"
+  "Authorization": "Bearer [Your Access Token]"
 
 Response:
   [
@@ -178,8 +178,8 @@ Response:
 GET /memories/790d135b-d4db-4fc8-9587-792d3502c5dc
 
 Headers:
-  Content-Type: application/json
-  Authorization: Bearer [Your Access Token]
+  "Content-Type": "application/json"
+  "Authorization": "Bearer [Your Access Token]"
 
 Response:
   {
@@ -204,8 +204,8 @@ The memory needs the `isPublic` field and at least one of or both fields `conten
 POST /memories
 
 Headers:
-  Content-Type: application/json
-  Authorization: Bearer [Your Access Token]
+  "Content-Type": "application/json"
+  "Authorization": "Bearer [Your Access Token]"
 
 Body:
   {
@@ -236,8 +236,8 @@ Response:
 PUT /memories/c401c11e-586e-430c-bc77-5320adfd05c1
 
 Headers:
-  Content-Type: application/json
-  Authorization: Bearer [Your Access Token]
+  "Content-Type": "application/json"
+  "Authorization": "Bearer [Your Access Token]"
 
 Body:
   {
@@ -268,8 +268,8 @@ Response:
 DELETE /memories/747b3ab9-8313-412b-896e-e5db312afc7c
 
 Headers:
-  Content-Type: application/json
-  Authorization: Bearer [Your Access Token]
+  "Content-Type": "application/json"
+  "Authorization": "Bearer [Your Access Token]"
 
 Response:
   "success"
@@ -288,11 +288,11 @@ Response:
 POST /upload
 
 Headers:
-  Content-Type: multipart/form-data
-  Authorization: Bearer [Your Access Token]
+  "Content-Type": "multipart/form-data"
+  "Authorization": "Bearer [Your Access Token]"
 
 Body:
-  File: [Upload File]
+  "File": "[Upload File]"
 
 Response:
   {
