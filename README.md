@@ -16,6 +16,7 @@
 ## Back-end
 
 [![Node.JS][nodejs-shield]][nodejs-url][![Prisma][prisma-shield]][prisma-url][![TypeScript][typescript-shield]][typescript-url]
+<br>[API documentation](server/README.md)
 
 <!-- PROJECT LOGO -->
 <br />
@@ -79,6 +80,7 @@ The goal in developing this app was to have a practical project to help learn ke
 
 ## Getting Started
 
+Check the [API documentation](server/README.md).<br>
 To get a local copy up and running follow these simple steps.
 
 ### Prerequisites
