@@ -24,8 +24,8 @@ This documentation provides information about the available API endpoints.<br>
     <li>
       <a href="#memories">Memories</a>
       <ul>
-        <li><a href="#memories-index">Index</a></li>
-        <li><a href="#memories-show">Show</a></li>
+        <li><a href="#index-1">Index</a></li>
+        <li><a href="#show-1">Show</a></li>
         <li><a href="#create">Create</a></li>
         <li><a href="#update">Update</a></li>
         <li><a href="#delete">Delete</a></li>
@@ -150,7 +150,7 @@ Body:
 
 ## Memories
 
-<h3 id='memories-index'>Index</h3>
+### Index
 
 **Endpoint:** /memories<br>
 **Method:** GET<br>
@@ -177,7 +177,7 @@ Headers:
 ];
 ```
 
-<h3 id='memories-show'>Show</h3>
+### Show
 
 **Endpoint:** /memories/{id}<br>
 **Method:** GET<br>
